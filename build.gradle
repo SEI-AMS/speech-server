@@ -1,0 +1,23 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+sourceCompatibility = 1.6
+
+group = 'edu.cmu.sei.ams.cloudlet'
+version = '5.1.0'
+
+mainClassName = 'edu.cmu.sei.ams.clouldet.speechrec.server.SpeechRecognitionServer'
+
+repositories {
+    maven {
+        url 'http://repository.ow2.org/nexus/content/repositories/ow2-legacy'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    compile (
+            'org.jboss.netty:netty:3.2.7.Final',
+            'edu.cmu.sphinx:sphinx4:1.0-beta6'
+    )
+}

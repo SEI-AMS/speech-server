@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='windows-1252'?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+   <Product Id="*" UpgradeCode="12345678-1234-1234-1234-111111111111" 
+            Name="Speech Recognition Server" Version="1.0.0" Manufacturer="AMS" Language="1033">
+    <Package InstallerVersion="200" Compressed="yes" Comments="Windows Installer Package"/>
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+    <Directory Id="WINDOWSVOLUME">
+        <Directory Id="UsersFolder" Name="Users">
+            <Directory Id="CloudletUserFolder" Name="cloudlet">
+                <Directory Id="APPLICATIONROOTDIRECTORY" Name="speech">
+                </Directory>
+            </Directory>
+        </Directory>
+    </Directory>
+    </Directory>
+      
+    <DirectoryRef Id="APPLICATIONROOTDIRECTORY">
+        <Component Id="cmpF87E290FF1CEABC564452429FC1012EE" Guid="{012CB48F-B254-4B40-94E1-BEE01F1B9CEA}">
+            <File Id="filF81857847771EA71243DDA2A9B7935D3" KeyPath="yes" Source=".\run.bat" />
+        </Component>
+        <Component Id="cmpF87E290FF1CEABC564452429FC1012EF" Guid="{012CB48F-B254-4B40-94E1-BEE01F1B9CEF}">
+            <File Id="filF81857847771EA71243DDA2A9B7935D4" KeyPath="yes" Source=".\srvany.exe" />
+
+            <RegistryKey Root="HKLM" Key="SYSTEM\CurrentControlSet\Services\SpeechRecServer\Parameters">
+              <RegistryValue Id="rg_remNP1" Action="write" Name="AppDirectory" Value="[APPLICATIONROOTDIRECTORY]" Type="string"/>
+              <RegistryValue Id="rg_remNP2" Action="write" Name="Application" Value="[APPLICATIONROOTDIRECTORY]run.bat" Type="string"/>
+            </RegistryKey>            
+            
+			<ServiceInstall Id='MyServiceInstall' DisplayName='SpeechRecServer' Name='SpeechRecServer'
+				ErrorControl='normal' Start='auto' Type='ownProcess' Vital='yes' />
+
+			<ServiceControl Id='MyServiceControl' Name='SpeechRecServer'
+				Start='install' Stop='uninstall' Remove='uninstall' />			
+        </Component>        
+        <Component Id="cmp22E050A257C9BE4634E33FF3D9AB08E0" Guid="{138F5F51-F4DD-4FFC-B56E-6CF93BD9DB9A}">
+            <File Id="filC2E656380C22D31A63451532BF83AAA0" KeyPath="yes" Source=".\SpeechRecognitionServer.jar" />
+        </Component>
+        <Component Id="cmp0AFB891784053E9FB854605ED464F9F9" Guid="{25A9B96A-FE8D-404B-A1B1-D58794B6D1BE}">
+            <File Id="filB28D4142595546D16D4FC9B442BAA742" KeyPath="yes" Source=".\speech_rec_server.conf" />
+        </Component>
+        <Component Id="cmp53DFFB91024831C471AF0082B9504291" Guid="{604AF5F0-D323-46C9-9C26-E6983BA42B80}">
+            <File Id="fil088CA3A36D826BFC0F5FC81286D440B7" KeyPath="yes" Source=".\usage.txt" />
+        </Component>
+        <Directory Id="dir95EA70396F49D68CDC7179D02F52607F" Name="config">
+            <Component Id="cmpBB510F995DA03E4A1AD5D8567184487A" Guid="{E375F54A-E78E-461A-8853-8CA358610F5C}">
+                <File Id="fil7A472DFE05E8F1153B10E950539A15C1" KeyPath="yes" Source=".\config\config.xml" />
+            </Component>
+        </Directory>
+        <Directory Id="dir1EE6D750712FBCCB68E62A39F7238072" Name="models">
+            <Directory Id="dirF5FB2B0AD3E9EDD51C759D26B637A369" Name="acoustic">
+                <Directory Id="dirF23A636F2AC73FF65AEA2EEDDE74CB2E" Name="tidigits">
+                    <Component Id="cmpD7FA73B3A79D10FB9E8359BED0A0B5D9" Guid="{F2A2C565-FF4D-4029-946A-C27CF9FBB15D}">
+                        <File Id="filBE8CEA8D541874475883B0BF26EA7AB0" KeyPath="yes" Source=".\models\acoustic\tidigits\feat.params" />
+                    </Component>
+                    <Component Id="cmpFAE7C5F6CB542FC420AF3125A90481D2" Guid="{E93F147A-2ACB-471A-AA06-FEE0EAA38AA0}">
+                        <File Id="filA7A140537A5B5B2B631A83E62FDD0D3D" KeyPath="yes" Source=".\models\acoustic\tidigits\license.terms" />
+                    </Component>
+                    <Component Id="cmp908EEB63E17BDF472CF234C6D6DF62A4" Guid="{BC8AFD8D-B22C-4074-B3FF-3ED2EB6FF684}">
+                        <File Id="filBD69A1D35254ACF864156CA2C80DA12A" KeyPath="yes" Source=".\models\acoustic\tidigits\mdef" />
+                    </Component>
+                    <Component Id="cmpC1DFCECBF7AE1A6FB0416601334210E1" Guid="{70463628-E611-4FF3-A273-0A75966F9D50}">
+                        <File Id="fil8244A5C4E3AD31152587E20725C4EF09" KeyPath="yes" Source=".\models\acoustic\tidigits\means" />
+                    </Component>
+                    <Component Id="cmp340C708A0511DFA5F7A1E89C77EB18CB" Guid="{B6EC80DA-E3C0-4705-81D7-195FB4B7A823}">
+                        <File Id="fil246CCBE771C6F3221BDB80D3B4E9FC53" KeyPath="yes" Source=".\models\acoustic\tidigits\mixture_weights" />
+                    </Component>
+                    <Component Id="cmpE4D15670DA6DECAE4436EE0269566AF8" Guid="{D755F81D-702C-445B-B135-D69F9D823621}">
+                        <File Id="fil0B77EBAA83DD4358BE34343A481F5FFB" KeyPath="yes" Source=".\models\acoustic\tidigits\noisedict" />
+                    </Component>
+                    <Component Id="cmp3FBF3AAC996F940B6F3BF7826D943EEA" Guid="{DD928C8C-3402-4FF0-8F84-AEF0E7E46B34}">
+                        <File Id="fil4C42CD39306CBD9080AA49DDE775353E" KeyPath="yes" Source=".\models\acoustic\tidigits\README" />
+                    </Component>
+                    <Component Id="cmpD3746C1750ADB90D1B3EAA98BFE89BBA" Guid="{27052B29-8D49-45C5-82E5-6381D8AFBA16}">
+                        <File Id="filFDE92BF5394190AEFBB652875592C85C" KeyPath="yes" Source=".\models\acoustic\tidigits\transition_matrices" />
+                    </Component>
+                    <Component Id="cmp2E594900393AA304C2E11F7145E8DC8D" Guid="{32838CB2-9216-4837-9F98-B1718DD7C066}">
+                        <File Id="fil9C80DC11B6B66CA24C8DD69EE1975AA0" KeyPath="yes" Source=".\models\acoustic\tidigits\variances" />
+                    </Component>
+                    <Directory Id="dir085F2326E4C75D41193E903835D8B799" Name="dict">
+                        <Component Id="cmpFA0552368DF08EE5DD80194F0EB7C0FC" Guid="{35717F8C-1B86-466E-AABA-D506E309FF40}">
+                            <File Id="fil803CEBC5D8E5EA703432147F862F8EA0" KeyPath="yes" Source=".\models\acoustic\tidigits\dict\dictionary" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir66D60CCDE87A5EEBB5557CD5694AB7D3" Name="wsj">
+                    <Component Id="cmp6378495A41485FB4453B8EC6E9E484F0" Guid="{B085EC8E-2234-4F89-B690-61FECDF77A82}">
+                        <File Id="filB1500F280DFF49C03C5A3A4D9105F120" KeyPath="yes" Source=".\models\acoustic\wsj\feat.params" />
+                    </Component>
+                    <Component Id="cmp50EA9CD26A8D46977CA7F405DA885F47" Guid="{14CD43D9-0543-405B-87C1-A2581F5E1DB7}">
+                        <File Id="fil41C5D5FFEF375484908DDE3EB883E8CD" KeyPath="yes" Source=".\models\acoustic\wsj\license.terms" />
+                    </Component>
+                    <Component Id="cmp6083CE056B3A87FE120F3A4F757BA242" Guid="{3977D5A1-3D3B-46F8-B780-CF797B0721C8}">
+                        <File Id="filD7319A93044F09230668367C91E7E025" KeyPath="yes" Source=".\models\acoustic\wsj\mdef" />
+                    </Component>
+                    <Component Id="cmpD5782498B045F13156E59E5AB3AD0BE7" Guid="{1D5B0732-277F-4F3A-A62C-10E271D3757F}">
+                        <File Id="fil2D83C9537A0E38BB035A20411C252768" KeyPath="yes" Source=".\models\acoustic\wsj\means" />
+                    </Component>
+                    <Component Id="cmp17222FFEF954EA830A8931D981E9D5DA" Guid="{189D69A2-AE06-4BD1-953C-8EB304BB29AC}">
+                        <File Id="filCFD6233C70D78BF8761B765DDC8984A5" KeyPath="yes" Source=".\models\acoustic\wsj\mixture_weights" />
+                    </Component>
+                    <Component Id="cmpCB8E21AF19EB27F2CAC067106BA65F60" Guid="{BF83F260-8573-4D9C-89DF-74E50B51F9F4}">
+                        <File Id="filA619FB61F6E8D1047A525C9E0B6EB517" KeyPath="yes" Source=".\models\acoustic\wsj\noisedict" />
+                    </Component>
+                    <Component Id="cmpC5C8979A4E8393883A104F8696E42CEC" Guid="{1091742C-A88F-4BF6-91ED-B9C2B0FC26F6}">
+                        <File Id="filEF8848C2620A40907A607C4F6D5AC9AA" KeyPath="yes" Source=".\models\acoustic\wsj\README" />
+                    </Component>
+                    <Component Id="cmp75A728A99498069663C3CEB4857F8455" Guid="{C9064D4D-A113-47D2-B136-B3507FF4E7CD}">
+                        <File Id="filB27CCE475D25030489F26E6A2E2C53B8" KeyPath="yes" Source=".\models\acoustic\wsj\transition_matrices" />
+                    </Component>
+                    <Component Id="cmpC7F82AFBA567D0FF5DE6B763F2D433B4" Guid="{8D3074B1-312E-4ECE-9680-487387011EA6}">
+                        <File Id="filC9219522A5BEE010A5BCAD6CC0091196" KeyPath="yes" Source=".\models\acoustic\wsj\variances" />
+                    </Component>
+                    <Directory Id="dir30F3268C0C067F8FAF6C11B40AC1AA57" Name="dict">
+                        <Component Id="cmpFDE2E04261B45F211EFCA79189A0F0D6" Guid="{5E4CBBF6-1E26-4A71-88A3-1E024FF609C7}">
+                            <File Id="fil6AE05FD111A27BF2BF73120DB21FB5FF" KeyPath="yes" Source=".\models\acoustic\wsj\dict\alpha.dict" />
+                        </Component>
+                        <Component Id="cmp8B87F7B57022D5639D4CCA1E3C60914A" Guid="{F6DA6C2D-5FB6-4D8C-A406-0550C3E79FF7}">
+                            <File Id="fil2AEEC3495272E16E0A93F63554AAF874" KeyPath="yes" Source=".\models\acoustic\wsj\dict\cmudict.0.6d" />
+                        </Component>
+                        <Component Id="cmp495014BF1E64E93BEE09E137B407C415" Guid="{1EDF8D6D-5F68-4B7B-BA1E-11578BB03CF8}">
+                            <File Id="filA1475E3218BE4A525B14054AD57C990C" KeyPath="yes" Source=".\models\acoustic\wsj\dict\digits.dict" />
+                        </Component>
+                    </Directory>
+                </Directory>
+                <Directory Id="dir68D574420CAF0E6728E60E941DC5882E" Name="wsj_8kHz">
+                    <Component Id="cmpF39C4E326778368566001998D7D9B052" Guid="{D8A91124-BE8E-47CE-B89B-64F6F01F9D45}">
+                        <File Id="fil1AD92EEEC6196E4AA94C3341BAE733C9" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\feat.params" />
+                    </Component>
+                    <Component Id="cmp2AE5F0B4C9BC787CAEED7F971C2CAB99" Guid="{C388E004-CE61-4AEA-8400-7678097DF754}">
+                        <File Id="fil0E7B75336D50C02629137BE26587301D" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\mdef" />
+                    </Component>
+                    <Component Id="cmp309699ABE3A106215ABCD1D1D659E6C9" Guid="{0A97B20D-7220-413C-85F6-6D77E75DA13E}">
+                        <File Id="fil7F876065491E6BD44A085CB1081AEC31" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\means" />
+                    </Component>
+                    <Component Id="cmpC123DE76599ABA18A7111E613D811238" Guid="{0DF04E7D-C3EC-46B1-865E-D3F6595DE900}">
+                        <File Id="fil8F5053C85DC2FBAAAED1AC77F9CCB830" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\mixture_weights" />
+                    </Component>
+                    <Component Id="cmp5B9B6F11E7ABCD96849D1A3B8EDA4AAB" Guid="{2A44D51E-9B52-4B60-86F2-4B180B72AFDD}">
+                        <File Id="filA97C2F4A3A2CCBCC57B48A714E5CE63E" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\noisedict" />
+                    </Component>
+                    <Component Id="cmp54B508833C2EE6875AF945543DF32A89" Guid="{45175ACC-AD1D-47BB-A11D-FD7202B9ED5E}">
+                        <File Id="fil360196BE3900E3EA2F2137F75098F951" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\transition_matrices" />
+                    </Component>
+                    <Component Id="cmpB3414A6572781ABBF4AEF3A7CF667595" Guid="{6EA4EDD3-5807-4DA1-924D-1EEBA4167D97}">
+                        <File Id="filC48A94B314F1C503DF620D30A1B23078" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\variances" />
+                    </Component>
+                    <Directory Id="dirC962AACB3950C73E34603BAB0A6E6B15" Name="dict">
+                        <Component Id="cmp1E0B48C27781F893A7162B00CCF3FA43" Guid="{80E24972-3D17-40BC-A8B0-54883D1C9ED5}">
+                            <File Id="filF9DEB444CB725F0EB90D7F7EE77C72D0" KeyPath="yes" Source=".\models\acoustic\wsj_8kHz\dict\cmudict.0.6d" />
+                        </Component>
+                    </Directory>
+                </Directory>
+            </Directory>
+            <Directory Id="dir1814C5F022488347EA16E9ECA93BD345" Name="language">
+                <Directory Id="dirA7FD43D3A80DAB05A753E267F74BECA4" Name="weather">
+                    <Component Id="cmp8E29B077ADD076941E2557FBDFC261EB" Guid="{5CDC61AD-EE6B-40CF-88E4-8431DE35260D}">
+                        <File Id="fil1398D08CA7D1F63ECF522AA9E72AB6E0" KeyPath="yes" Source=".\models\language\weather\extractVocab.awk" />
+                    </Component>
+                    <Component Id="cmp71B0E744E9A1DFA6C510EF44BFF151DB" Guid="{871E4144-8F21-4A79-913D-69E9B587709A}">
+                        <File Id="fil4DEF3E83C782D76301F857F2A3AAD5F3" KeyPath="yes" Source=".\models\language\weather\genTranscript.awk" />
+                    </Component>
+                    <Component Id="cmp72C1D35BE4DE732C54F9656B96B65A95" Guid="{467B82DA-6E0A-40E1-9690-638B7D23640E}">
+                        <File Id="filDBC4D40AE0DF4576C68BE2B35E7CD416" KeyPath="yes" Source=".\models\language\weather\makeLM" />
+                    </Component>
+                    <Component Id="cmp129E07F750E36292CCE34E5E0A45F4D0" Guid="{9669FEA2-60B1-4A37-87B3-066165CE4BBE}">
+                        <File Id="filCEB5E8AE8129F1DB2D6D8A017FA01E8C" KeyPath="yes" Source=".\models\language\weather\README.txt" />
+                    </Component>
+                    <Component Id="cmpC501949A823CA894DFDFF784F756C584" Guid="{DB0C3524-CEE3-4E0C-839B-B65BB92179BB}">
+                        <File Id="fil39912B270AEA6FCCAE67DC3ACDAAE9A0" KeyPath="yes" Source=".\models\language\weather\weather.txt" />
+                    </Component>
+                    <Component Id="cmpE5FA4645747A417BE88A7F5DEE35F66A" Guid="{27B83C21-28E8-45F6-84CE-1DCB86ADBE99}">
+                        <File Id="fil63723AEA6E61147B4FC713005B0A11A5" KeyPath="yes" Source=".\models\language\weather\weather.vocab" />
+                    </Component>
+                </Directory>
+                <Directory Id="dirC3FC33B4FEF3113B8D3183B24854A56F" Name="wsj">
+                    <Component Id="cmp4BA92C3E5561F5F761BE46F51AB120E4" Guid="{F3EBC997-6EF1-496B-9F9A-79186A67681E}">
+                        <File Id="fil60CE2EED4A96E3F629B582B3FB40DE9B" KeyPath="yes" Source=".\models\language\wsj\5k_words.vocab" />
+                    </Component>
+                    <Component Id="cmp165C05B076883EF21E0221C20F7B51E2" Guid="{04375959-18B9-415B-98C6-AFFB58B51267}">
+                        <File Id="fil5FCCE7A75D464A5CF54742243EA49C42" KeyPath="yes" Source=".\models\language\wsj\makeLM" />
+                    </Component>
+                    <Component Id="cmp0FB28B796115E16662863910466F589F" Guid="{017FFCA5-B151-418A-8488-5BFE2FDD6340}">
+                        <File Id="fil33771E84858DF4CAD60C199617BC9938" KeyPath="yes" Source=".\models\language\wsj\prep.awk" />
+                    </Component>
+                    <Component Id="cmpDBC26C38BF0CE6161FF3111E065F3F20" Guid="{0582C1C3-4E57-46D0-A6F9-B232D2D42587}">
+                        <File Id="fil9B881841E05B4510CF90DA7B4EE05318" KeyPath="yes" Source=".\models\language\wsj\README.txt" />
+                    </Component>
+                    <Component Id="cmpE1DB8B3B96EBC8BE7BDCA6D17F597A4C" Guid="{2DA27D99-DFC9-412C-B0D9-E63DFF3CD726}">
+                        <File Id="fil9DF7D0850DB52C339ADA9159A3D9BCDA" KeyPath="yes" Source=".\models\language\wsj\README_TOOLS.txt" />
+                    </Component>
+                    <Component Id="cmp7853B0DB82C37F1A27578F82C0D93C1C" Guid="{5FD01FE0-ADF4-4FAC-B61E-59296029A063}">
+                        <File Id="filB06EA3E63A9F3BEF950FED8294AFA44C" KeyPath="yes" Source=".\models\language\wsj\wsj5kc.Z.DMP" />
+                    </Component>
+                </Directory>
+            </Directory>
+        </Directory>
+    </DirectoryRef> 
+
+   <ComponentGroup Id="SpeechFiles">
+        <ComponentRef Id="cmpF87E290FF1CEABC564452429FC1012EE" />
+        <ComponentRef Id="cmpF87E290FF1CEABC564452429FC1012EF" />
+        <ComponentRef Id="cmp22E050A257C9BE4634E33FF3D9AB08E0" />
+        <ComponentRef Id="cmp0AFB891784053E9FB854605ED464F9F9" />
+        <ComponentRef Id="cmp53DFFB91024831C471AF0082B9504291" />
+        <ComponentRef Id="cmpBB510F995DA03E4A1AD5D8567184487A" />
+        <ComponentRef Id="cmpD7FA73B3A79D10FB9E8359BED0A0B5D9" />
+        <ComponentRef Id="cmpFAE7C5F6CB542FC420AF3125A90481D2" />
+        <ComponentRef Id="cmp908EEB63E17BDF472CF234C6D6DF62A4" />
+        <ComponentRef Id="cmpC1DFCECBF7AE1A6FB0416601334210E1" />
+        <ComponentRef Id="cmp340C708A0511DFA5F7A1E89C77EB18CB" />
+        <ComponentRef Id="cmpE4D15670DA6DECAE4436EE0269566AF8" />
+        <ComponentRef Id="cmp3FBF3AAC996F940B6F3BF7826D943EEA" />
+        <ComponentRef Id="cmpD3746C1750ADB90D1B3EAA98BFE89BBA" />
+        <ComponentRef Id="cmp2E594900393AA304C2E11F7145E8DC8D" />
+        <ComponentRef Id="cmpFA0552368DF08EE5DD80194F0EB7C0FC" />
+        <ComponentRef Id="cmp6378495A41485FB4453B8EC6E9E484F0" />
+        <ComponentRef Id="cmp50EA9CD26A8D46977CA7F405DA885F47" />
+        <ComponentRef Id="cmp6083CE056B3A87FE120F3A4F757BA242" />
+        <ComponentRef Id="cmpD5782498B045F13156E59E5AB3AD0BE7" />
+        <ComponentRef Id="cmp17222FFEF954EA830A8931D981E9D5DA" />
+        <ComponentRef Id="cmpCB8E21AF19EB27F2CAC067106BA65F60" />
+        <ComponentRef Id="cmpC5C8979A4E8393883A104F8696E42CEC" />
+        <ComponentRef Id="cmp75A728A99498069663C3CEB4857F8455" />
+        <ComponentRef Id="cmpC7F82AFBA567D0FF5DE6B763F2D433B4" />
+        <ComponentRef Id="cmpFDE2E04261B45F211EFCA79189A0F0D6" />
+        <ComponentRef Id="cmp8B87F7B57022D5639D4CCA1E3C60914A" />
+        <ComponentRef Id="cmp495014BF1E64E93BEE09E137B407C415" />
+        <ComponentRef Id="cmpF39C4E326778368566001998D7D9B052" />
+        <ComponentRef Id="cmp2AE5F0B4C9BC787CAEED7F971C2CAB99" />
+        <ComponentRef Id="cmp309699ABE3A106215ABCD1D1D659E6C9" />
+        <ComponentRef Id="cmpC123DE76599ABA18A7111E613D811238" />
+        <ComponentRef Id="cmp5B9B6F11E7ABCD96849D1A3B8EDA4AAB" />
+        <ComponentRef Id="cmp54B508833C2EE6875AF945543DF32A89" />
+        <ComponentRef Id="cmpB3414A6572781ABBF4AEF3A7CF667595" />
+        <ComponentRef Id="cmp1E0B48C27781F893A7162B00CCF3FA43" />
+        <ComponentRef Id="cmp8E29B077ADD076941E2557FBDFC261EB" />
+        <ComponentRef Id="cmp71B0E744E9A1DFA6C510EF44BFF151DB" />
+        <ComponentRef Id="cmp72C1D35BE4DE732C54F9656B96B65A95" />
+        <ComponentRef Id="cmp129E07F750E36292CCE34E5E0A45F4D0" />
+        <ComponentRef Id="cmpC501949A823CA894DFDFF784F756C584" />
+        <ComponentRef Id="cmpE5FA4645747A417BE88A7F5DEE35F66A" />
+        <ComponentRef Id="cmp4BA92C3E5561F5F761BE46F51AB120E4" />
+        <ComponentRef Id="cmp165C05B076883EF21E0221C20F7B51E2" />
+        <ComponentRef Id="cmp0FB28B796115E16662863910466F589F" />
+        <ComponentRef Id="cmpDBC26C38BF0CE6161FF3111E065F3F20" />
+        <ComponentRef Id="cmpE1DB8B3B96EBC8BE7BDCA6D17F597A4C" />
+        <ComponentRef Id="cmp7853B0DB82C37F1A27578F82C0D93C1C" />
+    </ComponentGroup>  
+ 
+      <Feature Id="MainApplication" Level="1">
+         <ComponentGroupRef Id="SpeechFiles"/>
+      </Feature>
+   </Product>
+</Wix>
