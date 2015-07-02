@@ -1,7 +1,9 @@
 # speech-server
 Test server: Speech Recognition Server based on Sphinx
 
+speech-server is a test example of a server for speech recognition. After building speech-server it has to be added to the Cloudlet Server as a Service VM. Instructions for creating, adding and testing a Service VM are available at https://github.com/SEI-AMS/pycloud/wiki/Service-VMs.
 
+speech-server is a basically a wrapper to the Sphinx speech recognition software developed at Carnegie Mellon University. The Sphinx libraries are required in order to build the test speech server.
 
 Cloudlets are discoverable, generic, stateless servers located in single-hop proximity of mobile devices, that can operate in disconnected mode and are virtual-machine (VM) based to promote flexibility, mobility, scalability, and elasticity. In our implementation of cloudlets, applications are statically partitioned into a very thin client that runs on the mobile device and a computation-intensive Server that runs inside a Service VM. Read more about cloudlets at http://sei.cmu.edu/mobilecomputing/research/tactical-cloudlets/.
 
