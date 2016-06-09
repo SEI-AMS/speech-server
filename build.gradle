@@ -31,3 +31,11 @@ jar {
         )
     }
 }
+
+task copyJarToDist(type: Copy) {
+    from jar
+    from "src/dist"
+    into "build/full-dist"
+}
+
+task buildJarWithConfig(dependsOn: [jar, copyJarToDist])
