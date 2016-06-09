@@ -1,0 +1,13 @@
+base: cloudius/osv-openjdk
+
+cmdline: /java.so -jar /speech-server-5.1.0.jar 9001
+
+#build: gradle buildJarWithConfig
+
+files:
+  /speech-server-5.1.0.jar: ./build/full-dist/speech-server-5.1.0.jar
+  /config/config.xml: ./build/full-dist/config/config.xml
+  /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/dict/cmudict.0.6d: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/dict/cmudict.0.6d
+  /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/noisedict: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/noisedict
+  /models/language/wsj/wsj5kc.Z.DMP: ./build/full-dist/models/language/wsj/wsj5kc.Z.DMP
+ 
