@@ -21,3 +21,13 @@ dependencies {
             'edu.cmu.sphinx:sphinx4:1.0-beta6'
     )
 }
+
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': mainClassName
+        )
+    }
+}
