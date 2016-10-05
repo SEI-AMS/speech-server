@@ -2,7 +2,7 @@ base: cloudius/osv-openjdk
 
 cmdline: /java.so -jar /speech-server-5.1.0.jar 9001
 
-#build: gradle buildJarWithConfig
+build: gradle buildJarWithConfig
 
 files:
   /speech-server-5.1.0.jar: ./build/full-dist/speech-server-5.1.0.jar

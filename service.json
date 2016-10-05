@@ -1,0 +1,1 @@
+  {"num_users": 0, "vm_image": {"state_image": "edu.cmu.sei.ams.speech_rec_service.qcow2.lqs", "disk_image": "edu.cmu.sei.ams.speech_rec_service.qcow2"}, "version": "1", "description": "Speech on OSv", "tags": [], "service_id": "edu.cmu.sei.ams.speech_rec_service", "min_memory": "", "port": "9001", "ideal_memory": ""}
