@@ -10,7 +10,7 @@ mainClassName = 'edu.cmu.sei.ams.clouldet.speechrec.server.SpeechRecognitionServ
 
 repositories {
     maven {
-        url 'http://repository.ow2.org/nexus/content/repositories/ow2-legacy'
+        url 'https://repo1.maven.org/maven2'
     }
     mavenCentral()
 }
@@ -18,7 +18,7 @@ repositories {
 dependencies {
     compile (
             'org.jboss.netty:netty:3.2.7.Final',
-            'edu.cmu.sphinx:sphinx4:1.0-beta6'
+            'de.sciss:sphinx4:1.0.0'
     )
 }
 
