@@ -3,16 +3,14 @@
 sudo apt-get update
 
 # Capstan dependencies.
-sudo apt-get -y install git
 sudo apt-get -y install qemu-system
-sudo apt-get -y install golang
 
 # Depdencies for creating the Speech Server itself.
 sudo apt-get -y install gradle
 sudo apt-get -y install default-jdk
 
 # Capstan installation.
-go get github.com/cloudius-systems/capstan
+curl https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download | bash
 
 sudo adduser $USER kvm
 
