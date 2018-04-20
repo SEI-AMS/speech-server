@@ -51,7 +51,7 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
  */
 public class SpeechRecognitionServer {
 
-	public static final int DEFAULT_SERVER_PORT = 10191;
+	public static final int DEFAULT_SERVER_PORT = 9001;
 
 	public static void main(String[] args) throws Exception {
 
@@ -88,7 +88,7 @@ public class SpeechRecognitionServer {
 				new HeapChannelBufferFactory(ByteOrder.BIG_ENDIAN));
 
 		bootstrap.bind(new InetSocketAddress(port));
-		System.out.println("SpeechRecognitionServer V5.0 listening on " + port
+		System.out.println("SpeechRecognitionServer v5.1.1 listening on " + port
 				+ " ...");
 	}
 

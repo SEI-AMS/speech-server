@@ -178,18 +178,18 @@ public class SpeechRecognitionServerHandler extends SimpleChannelHandler {
 		while (!done) {
 			Result result = recognizer.recognize();
 			if (result != null) {
-				Lattice lattice = new Lattice(result);
-				LatticeOptimizer optimizer = new LatticeOptimizer(lattice);
-				optimizer.optimize();
+				//Lattice lattice = new Lattice(result);
+				//LatticeOptimizer optimizer = new LatticeOptimizer(lattice);
+				//optimizer.optimize();
 				String resultText = result.getBestResultNoFiller();
-				// logger.log(Level.INFO, "[ Best Match ]: " + resultText);
+				//logger.log(Level.INFO, "[ Best Match ]: " + resultText);
 				outputBuffer.append(resultText).append(" ");
 			} else {
 				done = true;
 			}
 		}
 
-
+		logger.log(Level.INFO, "[ Best Matches ]: " + outputBuffer.toString());
 		return outputBuffer.toString();
 	}
 }

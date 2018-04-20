@@ -1,25 +1,20 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-sourceCompatibility = 1.6
+sourceCompatibility = 1.7
 
 group = 'edu.cmu.sei.ams.cloudlet'
-version = '5.1.0'
+version = '5.1.1'
 
 mainClassName = 'edu.cmu.sei.ams.clouldet.speechrec.server.SpeechRecognitionServer'
 
 repositories {
-    maven {
-        url 'https://repo1.maven.org/maven2'
-    }
     mavenCentral()
 }
 
 dependencies {
-    compile (
-            'org.jboss.netty:netty:3.2.7.Final',
-            'de.sciss:sphinx4:1.0.0'
-    )
+    compile group: 'de.sciss', name: 'sphinx4', version: '1.0.0'
+    compile group: 'org.jboss.netty', name: 'netty', version: '3.2.7.Final'
 }
 
 jar {
