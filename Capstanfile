@@ -14,5 +14,6 @@ files:
   /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/variances: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/variances
   /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/mixture_weights: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/mixture_weights
   /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/transition_matrices: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/transition_matrices
-  /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/mdef: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/mdef  
+  /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/mdef: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/mdef
+  /WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/feat.params: ./build/full-dist/WSJ_8gau_13dCep_16k_40mel_130Hz_6800Hz/feat.params
  
