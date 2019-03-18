@@ -10,6 +10,7 @@ sudo apt-get -y install gradle
 sudo apt-get -y install default-jdk
 
 # Capstan installation.
+sudo apt-get -y install curl
 curl https://raw.githubusercontent.com/cloudius-systems/capstan/master/scripts/download | bash
 
 sudo adduser $USER kvm
